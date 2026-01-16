@@ -23,11 +23,9 @@
 
   // --- MULTI_LINE_TEXTのみ ---
   const fetchMultiLineTextFields = async () => {
-    const resp = await kintone.api(kintone.api.url('/k/v1/app/form/fields', true), 'GET', {
-      app: kintone.app.getId()
-    });
+    const resp = await kintone.app.getFormFields();
 
-    const props = resp.properties || {};
+    const props = resp || {};
     return Object.keys(props)
       .map((code) => ({ code, ...props[code] }))
       .filter((p) => p.type === 'MULTI_LINE_TEXT')
@@ -37,11 +35,9 @@
 
   // --- layoutからSPACE(elementId)候補 ---
   const fetchSpacesFromLayout = async () => {
-    const resp = await kintone.api(kintone.api.url('/k/v1/app/form/layout', true), 'GET', {
-      app: kintone.app.getId()
-    });
+    const resp = await kintone.app.getFormLayout();
 
-    const rows = resp.layout || [];
+    const rows = resp || [];
     const spaces = [];
 
     rows.forEach((row) => {
