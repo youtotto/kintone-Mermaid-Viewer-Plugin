@@ -1,0 +1,22 @@
+{
+  "manifest_version": 1,
+  "version": "1.0.0",
+  "type": "APP",
+  "name": {
+    "ja": "Mermaid Viewer（無料）",
+    "en": "Mermaid Viewer (Free)"
+  },
+  "description": {
+    "ja": "Mermaidコードをkintone詳細画面で高解像度表示し、ズーム＆全画面表示できます。",
+    "en": "Render Mermaid diagrams in kintone record detail view with smooth zoom and fullscreen."
+  },
+  "icon": "icon.png",
+  "desktop": {
+    "js": ["desktop.js"],
+    "css": []
+  },
+  "config": {
+    "html": "config.html",
+    "js": ["config.js"]
+  }
+}

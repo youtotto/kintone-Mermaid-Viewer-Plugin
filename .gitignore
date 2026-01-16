@@ -1,0 +1,8 @@
+dist/
+node_modules/
+*.ppk
+*.key
+private.key
+.env
+.vscode/
+.DS_Store

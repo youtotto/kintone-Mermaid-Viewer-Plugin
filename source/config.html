@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>Mermaid Viewer 設定</title>
+  <link rel="stylesheet" href="https://js.cybozu.com/k/2.0.0/css/cybozu.css">
+  <style>
+    .nrc-wrap { padding: 16px; }
+    .nrc-row { margin-bottom: 14px; }
+    .nrc-label { display:block; font-weight:600; margin-bottom:6px; }
+    .nrc-note { color:#667085; font-size:12px; margin-top:6px; }
+    .nrc-btn { padding:6px 10px; border:1px solid #c7cdd6; background:#f6f8fb; border-radius:6px; cursor:pointer; }
+    .nrc-btn:hover { background:#eef2f7; }
+    .nrc-btn--primary { background:#1f6feb; border-color:#1f6feb; color:#fff; }
+    .nrc-btn--primary:hover { filter: brightness(0.95); }
+    .nrc-table { width: 100%; border-collapse: collapse; }
+    .nrc-table th, .nrc-table td { border: 1px solid #e3e7ee; padding: 8px; vertical-align: middle; }
+    .nrc-table th { background:#f8fafc; text-align:left; }
+    .nrc-select { width: 100%; max-width: 520px; }
+    .nrc-actions { display:flex; gap:8px; align-items:center; flex-wrap: wrap; }
+    .nrc-muted { color:#667085; font-size:12px; }
+    .nrc-footer { margin-top: 18px; display:flex; gap:10px; justify-content:flex-end; }
+  </style>
+</head>
+<body>
+  <div class="nrc-wrap">
+    <div class="nrc-row">
+      <div class="nrc-label">描画マッピング（複数追加できます）</div>
+      <div class="nrc-note">
+        「Mermaidコード（複数行テキスト）」フィールドと、「レイアウト上のスペース要素（elementId）」を 1行ずつ紐付けます。
+      </div>
+    </div>
+
+    <div class="nrc-row">
+      <table class="nrc-table">
+        <thead>
+          <tr>
+            <th style="width: 45%;">Mermaidコード（複数行テキスト）</th>
+            <th style="width: 45%;">描画先スペース（elementId）</th>
+            <th style="width: 10%;">操作</th>
+          </tr>
+        </thead>
+        <tbody id="mappingBody"></tbody>
+      </table>
+
+      <div style="margin-top:10px;" class="nrc-actions">
+        <button type="button" class="nrc-btn" id="addRowBtn">＋ 追加</button>
+        <span class="nrc-muted">※行を追加して複数レンダリングできます</span>
+      </div>
+    </div>
+
+    <div class="nrc-row">
+      <div class="nrc-label">表示高さ（px）</div>
+      <input id="height" type="number" min="200" step="10" placeholder="500" style="width:160px;">
+      <div class="nrc-note">詳細画面の枠の高さです。</div>
+    </div>
+
+    <div class="nrc-row">
+      <div class="nrc-label">初期余白（padding）</div>
+      <input id="padding" type="number" min="0" step="5" placeholder="30" style="width:160px;">
+      <div class="nrc-note">小さくすると初期表示が大きく見えます（余白が減る）。</div>
+    </div>
+
+    <!-- 保存/キャンセル -->
+    <div class="nrc-footer">
+      <button type="button" class="nrc-btn" id="cancelBtn">キャンセル</button>
+      <button type="button" class="nrc-btn nrc-btn--primary" id="saveBtn">保存</button>
+    </div>
+
+    <div class="nrc-row nrc-note" style="margin-top:10px;">
+      保存後はプラグイン設定一覧へ戻ります。
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+</body>
+</html>
