@@ -4,7 +4,7 @@ kintone レコード内に記述した Mermaidコードを高解像度でレン�
 Notion や Miro では扱いづらい 大規模なシーケンス図・ER図を、
 kintone 上で快適に閲覧できます。
 
-![mermaid-viewer](https://github.com/user-attachments/assets/01dd68e5-8a76-425c-b4a7-eda134280de1)
+![mermaid-viewer](https://github.com/user-attachments/assets/b9b784a1-4920-42ec-8c7d-259dda694e30)
 
 ## 特徴
 - ✅ Mermaid v10 対応
