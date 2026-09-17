@@ -40,15 +40,26 @@
     const rows = resp || [];
     const spaces = [];
 
-    rows.forEach((row) => {
-      (row.fields || []).forEach((f) => {
-        const t = f.type;
-        if (t === 'SPACER' || t === 'SPACE') {
-          const elementId = f.elementId || '';
-          if (elementId) spaces.push({ elementId, label: elementId });
+    // ROW の fields を走査し、GROUP は内側の layout を再帰的に走査する。
+    // SUBTABLE 内はスペースを配置できない（対象外）ため走査しない。
+    const collect = (layoutRows) => {
+      (layoutRows || []).forEach((row) => {
+        if (!row) return;
+        if (row.type === 'GROUP') {
+          collect(row.layout || []);
+          return;
         }
+        if (row.type === 'SUBTABLE') return;
+        (row.fields || []).forEach((f) => {
+          const t = f?.type;
+          if (t === 'SPACER' || t === 'SPACE') {
+            const elementId = f.elementId || '';
+            if (elementId) spaces.push({ elementId, label: elementId });
+          }
+        });
       });
-    });
+    };
+    collect(rows);
 
     const uniq = new Map();
     spaces.forEach((s) => uniq.set(s.elementId, s));
@@ -76,6 +87,16 @@
     return dups;
   };
 
+  // select に value が無い場合、保存値を保持するための一時オプションを追加する
+  const ensureOptionKept = (selectEl, value, label) => {
+    const exists = Array.from(selectEl.options).some(o => o.value === value);
+    if (exists) return;
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = label;
+    selectEl.appendChild(opt);
+  };
+
   const buildRow = ({ fieldCode = '', spaceId = '' }, fields, spaces) => {
     const tr = document.createElement('tr');
 
@@ -85,7 +106,12 @@
     selField.innerHTML = fields.length
       ? fields.map(f => `<option value="${escapeHtml(f.code)}">${escapeHtml(f.label)} (${escapeHtml(f.code)})</option>`).join('')
       : `<option value="">（複数行テキストがありません）</option>`;
-    if (fieldCode) selField.value = fieldCode;
+    if (fieldCode) {
+      // 保存済みのフィールドが現在のフォームに無い（削除・型変更）場合も、
+      // 設定を黙って捨てず「現在使用できないフィールド」として値を保持する
+      ensureOptionKept(selField, fieldCode, `${fieldCode}（現在使用できないフィールド）`);
+      selField.value = fieldCode;
+    }
     tdField.appendChild(selField);
 
     const tdSpace = document.createElement('td');
@@ -94,7 +120,11 @@
     selSpace.innerHTML = spaces.length
       ? spaces.map(s => `<option value="${escapeHtml(s.elementId)}">${escapeHtml(s.label)}</option>`).join('')
       : `<option value="">（スペース要素がありません）</option>`;
-    if (spaceId) selSpace.value = spaceId;
+    if (spaceId) {
+      // 保存済みのスペースが現在のレイアウトに無い場合も同様に保持する
+      ensureOptionKept(selSpace, spaceId, `${spaceId}（現在使用できないスペース）`);
+      selSpace.value = spaceId;
+    }
     tdSpace.appendChild(selSpace);
 
     const tdAct = document.createElement('td');

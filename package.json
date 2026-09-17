@@ -1,0 +1,11 @@
+{
+  "name": "kintone-mermaid-viewer-plugin",
+  "private": true,
+  "description": "Test runner for the Mermaid Viewer plugin (jsdom-based, no runtime dependencies)",
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "devDependencies": {
+    "jsdom": "29.1.1"
+  }
+}
