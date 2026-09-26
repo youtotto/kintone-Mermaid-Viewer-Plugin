@@ -1,6 +1,23 @@
 kintone レコード内に記述した Mermaidコードを高解像度でレンダリングし、
 拡大・縮小・ドラッグ・全画面表示が可能なビューアプラグインです。
 
+## 公式リンク
+
+- [無料版の配布ページ](https://github.com/youtotto/kintone-Mermaid-Viewer-Plugin)
+- [紹介ページ](https://www.nestrec.com/post/kintone-%E3%81%A7-mermaid-%E5%9B%B3%E3%82%92%E3%80%8C%E8%A7%A3%E5%83%8F%E5%BA%A6%E3%82%92%E8%90%BD%E3%81%A8%E3%81%95%E3%81%9A%E3%80%8D%E6%8B%A1%E5%A4%A7%E3%83%BB%E7%A7%BB%E5%8B%95%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%81%9F%E8%A9%B1-%E3%80%9C%E4%BC%9A%E8%AD%B0%E3%81%A7-%E4%BD%BF%E3%81%88%E3%82%8B-%E5%9B%B3%E3%82%92%E7%9B%AE%E6%8C%87%E3%81%97%E3%81%A6%E3%80%9C)
+
+## ダウンロードと導入
+
+[Releases](https://github.com/youtotto/kintone-Mermaid-Viewer-Plugin/releases/latest) から次のファイルをダウンロードします。
+
+| ファイル | 用途 |
+|---|---|
+| `mermaid-viewer-1.0.1-free-bundle.zip` | 説明書付きの配布用 ZIP（おすすめ）。**ZIP を解凍し、中の `mermaid-viewer-1.0.1-free-plugin.zip` を kintone へ読み込みます。bundle 自体は kintone に直接読み込みません** |
+| `mermaid-viewer-1.0.1-free-plugin.zip` | kintone に直接読み込むプラグイン（bundle の中身と同じファイル） |
+| `SHA256SUMS.txt` | 上記 ZIP の SHA-256 |
+
+kintone への読み込みは、kintone システム管理 →「プラグイン」→「読み込む」で `mermaid-viewer-1.0.1-free-plugin.zip` を ZIP のまま選びます。
+
 Notion や Miro では扱いづらい 大規模なシーケンス図・ER図を、
 kintone 上で快適に閲覧できます。
 
